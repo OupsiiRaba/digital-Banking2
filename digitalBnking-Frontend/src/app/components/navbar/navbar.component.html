@@ -1,0 +1,46 @@
+<header class="p-3 bg-white text-black">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap ">
+            <button class="btn btn-warning" id="sidebarToggle" *ngIf="user" (click)="toggleSideBar()"> <i class="bi bi-filter-left"></i> menu</button>
+
+            <a href="/" class=" text-warning text-decoration-none  align-left mx-auto">
+                <h1 class="" > Digital Banking </h1>
+                           
+            </a>
+            
+          
+
+            <ng-container *ngIf="!user; else authenticated">
+                <div class="text-end">
+                  
+                    <button type="button" class="btn btn-primary me-2" routerLink="/login"> Login<i class="bi bi-box-arrow-in-right"></i> </button>
+                   
+                </div>
+            </ng-container>
+            <ng-template #authenticated>
+                <div class="text-end" >
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle action-button text-black text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            <i class="bi bi-person-fill"></i>
+                            {{ user?.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-info">
+                            <li><a class="dropdown-item text-black text-decoration-none" (click)="logout()"> 
+                                <i class="bi bi-box-arrow-left"></i>
+                                Log out
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item  text-black disabled" href="#" > 
+                                welcome 
+                                {{ user?.username }}
+                        </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item  text-black disabled" href="#" *ngIf="userRole=='ADMIN'"  > role : <strong>admin</strong> </a></li>
+                            <li><a class="dropdown-item text-black disabled" href="#" *ngIf="userRole=='USER'" > role : <strong>user</strong> </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</header>
