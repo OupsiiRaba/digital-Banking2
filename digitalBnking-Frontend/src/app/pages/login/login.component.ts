@@ -12,6 +12,7 @@ import { SecurityService } from 'src/app/services/security.service';
 export class LoginComponent implements OnInit {
 
   loginForm !: FormGroup;
+  
   submitting=false;
 
   constructor(
